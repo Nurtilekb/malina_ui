@@ -200,7 +200,11 @@ class ContainIn extends StatelessWidget {
             bottom: -5,
             right: -15,
             child: IconButton(
-              icon: const Icon(Icons.delete, color: Colors.black),
+              icon: Image.asset(
+                'assets/icons/delete.png',
+                width: 34,
+                height: 34,
+              ),
               onPressed: () {},
             ),
           ),
