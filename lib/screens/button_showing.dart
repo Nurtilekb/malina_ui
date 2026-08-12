@@ -55,65 +55,70 @@ class _AnimatedCartButtonState extends State<AnimatedCartButton> {
           color: Colors.white,
           borderRadius: BorderRadius.circular(_isExpanded ? 20 : 15),
         ),
-        child: _isExpanded
-            ? Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  _CartOption(
-                    icon: 'assets/icons/food.png',
-                    title: 'Еда',
-                    onTap: _openFood,
-                  ),
+        child: SingleChildScrollView(
+          physics: const NeverScrollableScrollPhysics(),
+          child: _isExpanded
+              ? Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    _CartOption(
+                      icon: 'assets/icons/food.png',
+                      title: 'Еда',
+                      onTap: _openFood,
+                    ),
 
-                  const SizedBox(height: 6),
+                    const SizedBox(height: 10),
 
-                  _CartOption(
-                    icon: 'assets/icons/cosmetic.png',
-                    title: 'Товары',
-                    onTap: _openProducts,
-                  ),
+                    _CartOption(
+                      icon: 'assets/icons/cosmetic.png',
+                      title: 'Товары',
+                      onTap: _openProducts,
+                    ),
 
-                  const SizedBox(height: 6),
+                    const SizedBox(height: 29),
 
-                  const Icon(
-                    Icons.shopping_cart,
-                    size: 20,
-                    color: Color(0xffAAAAAA),
-                  ),
+                    const Icon(
+                      Icons.shopping_cart,
+                      size: 20,
+                      color: const Color(0xFFF72055),
+                    ),
 
-                  const SizedBox(height: 2),
-
-                  const Text(
-                    'Корзина',
-                    style: TextStyle(fontSize: 10, color: Color(0xffAAAAAA)),
-                  ),
-                ],
-              )
-            : Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.shopping_cart,
-                    size: 22,
-                    color: widget.isSelected
-                        ? const Color(0xFFF72055)
-                        : const Color(0xffAAAAAA),
-                  ),
-
-                  const SizedBox(height: 4),
-
-                  Text(
-                    'Корзина',
-                    style: TextStyle(
-                      fontSize: 10,
+                    const SizedBox(height: 5),
+                    Text(
+                      'Корзина',
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: const Color(0xFFF72055),
+                      ),
+                    ),
+                  ],
+                )
+              : Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.shopping_cart,
+                      size: 22,
                       color: widget.isSelected
                           ? const Color(0xFFF72055)
                           : const Color(0xffAAAAAA),
                     ),
-                  ),
-                ],
-              ),
+
+                    const SizedBox(height: 4),
+
+                    Text(
+                      'Корзина',
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: widget.isSelected
+                            ? const Color(0xFFF72055)
+                            : const Color(0xffAAAAAA),
+                      ),
+                    ),
+                  ],
+                ),
+        ),
       ),
     );
   }

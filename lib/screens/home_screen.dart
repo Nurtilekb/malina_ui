@@ -33,7 +33,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
       bottomNavigationBar: SafeArea(
         child: SizedBox(
-          height: 190,
           child: CustomBottomNavBar(
             selectedIndex: _selectedIndex,
             onItemTapped: (index) {
