@@ -123,7 +123,7 @@ class _AnimatedCartButtonState extends State<AnimatedCartButton> {
             Icon(
               Icons.shopping_cart,
               size: 22,
-              color: widget.isSelected
+              color: _isExpanded
                   ? const Color(0xFFF72055)
                   : const Color(0xffAAAAAA),
             ),
@@ -132,7 +132,7 @@ class _AnimatedCartButtonState extends State<AnimatedCartButton> {
               'Корзина',
               style: TextStyle(
                 fontSize: 10,
-                color: widget.isSelected
+                color: _isExpanded
                     ? const Color(0xFFF72055)
                     : const Color(0xffAAAAAA),
               ),
