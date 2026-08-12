@@ -12,18 +12,77 @@ class AnimatedCartButton extends StatefulWidget {
 
 class _AnimatedCartButtonState extends State<AnimatedCartButton> {
   bool _isExpanded = false;
+  OverlayEntry? _overlayEntry;
 
   void _toggle() {
+    if (_isExpanded) {
+      _removeOverlay();
+    } else {
+      _showOverlay();
+    }
     setState(() {
       _isExpanded = !_isExpanded;
     });
   }
 
+  void _showOverlay() {
+    _overlayEntry = OverlayEntry(
+      builder: (context) => GestureDetector(
+        onTap: _toggle,
+        behavior: HitTestBehavior.opaque,
+        child: Stack(
+          children: [
+            Positioned.fill(child: Container(color: Colors.transparent)),
+
+            Positioned(
+              right: 12,
+              bottom: 75,
+              child: Material(
+                color: Colors.transparent,
+                child: Container(
+                  width: 70,
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      _CartOption(
+                        icon: 'assets/icons/food.png',
+                        title: 'Еда',
+                        onTap: _openFood,
+                      ),
+                      const SizedBox(height: 10),
+                      _CartOption(
+                        icon: 'assets/icons/cosmetic.png',
+                        title: 'Товары',
+                        onTap: _openProducts,
+                      ),
+                      const SizedBox(height: 20),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+    Overlay.of(context).insert(_overlayEntry!);
+  }
+
+  void _removeOverlay() {
+    _overlayEntry?.remove();
+    _overlayEntry = null;
+  }
+
   void _openFood() {
+    _removeOverlay();
     setState(() {
       _isExpanded = false;
     });
-
     Navigator.push(
       context,
       MaterialPageRoute(builder: (_) => ShoppingCartScreen(isItFood: true)),
@@ -31,10 +90,10 @@ class _AnimatedCartButtonState extends State<AnimatedCartButton> {
   }
 
   void _openProducts() {
+    _removeOverlay();
     setState(() {
       _isExpanded = false;
     });
-
     Navigator.push(
       context,
       MaterialPageRoute(builder: (_) => ShoppingCartScreen(isItFood: null)),
@@ -42,82 +101,43 @@ class _AnimatedCartButtonState extends State<AnimatedCartButton> {
   }
 
   @override
+  void dispose() {
+    _removeOverlay();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: _toggle,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 250),
-        curve: Curves.easeOutCubic,
+      child: Container(
         width: 70,
-        height: _isExpanded ? 190 : 60,
-        padding: const EdgeInsets.symmetric(vertical: 5),
+        height: 60,
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(_isExpanded ? 20 : 15),
+          borderRadius: BorderRadius.circular(15),
         ),
-        child: SingleChildScrollView(
-          physics: const NeverScrollableScrollPhysics(),
-          child: _isExpanded
-              ? Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    _CartOption(
-                      icon: 'assets/icons/food.png',
-                      title: 'Еда',
-                      onTap: _openFood,
-                    ),
-
-                    const SizedBox(height: 10),
-
-                    _CartOption(
-                      icon: 'assets/icons/cosmetic.png',
-                      title: 'Товары',
-                      onTap: _openProducts,
-                    ),
-
-                    const SizedBox(height: 29),
-
-                    const Icon(
-                      Icons.shopping_cart,
-                      size: 20,
-                      color: const Color(0xFFF72055),
-                    ),
-
-                    const SizedBox(height: 5),
-                    Text(
-                      'Корзина',
-                      style: TextStyle(
-                        fontSize: 10,
-                        color: const Color(0xFFF72055),
-                      ),
-                    ),
-                  ],
-                )
-              : Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.shopping_cart,
-                      size: 22,
-                      color: widget.isSelected
-                          ? const Color(0xFFF72055)
-                          : const Color(0xffAAAAAA),
-                    ),
-
-                    const SizedBox(height: 4),
-
-                    Text(
-                      'Корзина',
-                      style: TextStyle(
-                        fontSize: 10,
-                        color: widget.isSelected
-                            ? const Color(0xFFF72055)
-                            : const Color(0xffAAAAAA),
-                      ),
-                    ),
-                  ],
-                ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.shopping_cart,
+              size: 22,
+              color: widget.isSelected
+                  ? const Color(0xFFF72055)
+                  : const Color(0xffAAAAAA),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              'Корзина',
+              style: TextStyle(
+                fontSize: 10,
+                color: widget.isSelected
+                    ? const Color(0xFFF72055)
+                    : const Color(0xffAAAAAA),
+              ),
+            ),
+          ],
         ),
       ),
     );
