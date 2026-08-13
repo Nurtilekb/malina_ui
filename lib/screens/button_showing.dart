@@ -35,8 +35,8 @@ class _AnimatedCartButtonState extends State<AnimatedCartButton> {
             Positioned.fill(child: Container(color: Colors.transparent)),
 
             Positioned(
-              right: 12,
-              bottom: 75,
+              right: 0,
+              bottom: 70,
               child: Material(
                 color: Colors.transparent,
                 child: Container(

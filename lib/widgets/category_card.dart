@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 
 class KvadratniyContainer extends StatelessWidget {
+  final double? width;
+  final double? height;
+  final String title;
+  final String? imagePath;
+  final bool? isItlong;
+  final Color? color;
+  final EdgeInsets? padding;
+
   const KvadratniyContainer({
     super.key,
     required this.width,
@@ -9,21 +17,16 @@ class KvadratniyContainer extends StatelessWidget {
     this.imagePath,
     this.isItlong,
     this.color,
+    this.padding,
   });
-  final double? width;
-  final double? height;
-  final String title;
-  final String? imagePath;
-  final bool? isItlong;
-  final Color? color;
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: isItlong == true
-          ? EdgeInsets.only(left: 24, right: 24, top: 11, bottom: 11)
-          : EdgeInsets.only(left: 13, right: 13, top: 11, bottom: 13),
+      padding:
+          padding ?? EdgeInsets.only(left: 11, right: 11, top: 11, bottom: 11),
       decoration: BoxDecoration(
-        color: isItlong == true ? Color(0xFFF72055) : color,
+        color: color ?? Colors.red,
         borderRadius: BorderRadius.all(Radius.circular(14)),
       ),
       width: width ?? 86,

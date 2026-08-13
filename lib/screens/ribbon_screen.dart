@@ -71,7 +71,7 @@ class RibbonScreen extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   return KvadratniyContainer(
                     color: listColor[index],
-                    width: 90,
+                    width: 100,
                     height: 90,
                     title: getList[index],
                   );

@@ -5,7 +5,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return ColoredBox(
       color: const Color(0xFFFAFAFB),
       child: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
@@ -82,27 +82,25 @@ class ProfileScreen extends StatelessWidget {
           const SizedBox(height: 30),
 
           // Кнопка выхода
-          SizedBox(
-            width: double.infinity,
-            child: OutlinedButton.icon(
-              onPressed: () {
-                // Логика выхода
-              },
-              icon: const Icon(Icons.logout, color: Color(0xFFF72055)),
-              label: const Text(
-                'Выйти',
-                style: TextStyle(
-                  color: Color(0xFFF72055),
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
+          OutlinedButton.icon(
+            onPressed: () {
+              // Логика выхода
+            },
+            icon: const Icon(Icons.logout, color: Color(0xFFF72055)),
+            label: const Text(
+              'Выйти',
+              style: TextStyle(
+                color: Color(0xFFF72055),
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
               ),
-              style: OutlinedButton.styleFrom(
-                side: const BorderSide(color: Color(0xFFF72055)),
-                padding: const EdgeInsets.symmetric(vertical: 14),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
+            ),
+            style: OutlinedButton.styleFrom(
+              side: const BorderSide(color: Color(0xFFF72055)),
+              padding: const EdgeInsets.symmetric(vertical: 14),
+              minimumSize: Size.fromHeight(50),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
               ),
             ),
           ),
@@ -131,11 +129,7 @@ class ProfileScreen extends StatelessWidget {
           CircleAvatar(
             radius: 32,
             backgroundColor: const Color(0xFFF72055).withOpacity(0.1),
-            child: const Icon(
-              Icons.person,
-              size: 36,
-              color: Color(0xFFF72055),
-            ),
+            child: const Icon(Icons.person, size: 36, color: Color(0xFFF72055)),
           ),
           const SizedBox(width: 16),
           Expanded(
@@ -153,10 +147,7 @@ class ProfileScreen extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(
                   '+996 555 123 456',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey.shade600,
-                  ),
+                  style: TextStyle(fontSize: 14, color: Colors.grey.shade600),
                 ),
               ],
             ),
@@ -229,19 +220,12 @@ class ProfileScreen extends StatelessWidget {
                 const SizedBox(height: 2),
                 Text(
                   subtitle,
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: Colors.grey.shade500,
-                  ),
+                  style: TextStyle(fontSize: 13, color: Colors.grey.shade500),
                 ),
               ],
             ),
           ),
-          Icon(
-            Icons.chevron_right,
-            color: Colors.grey.shade400,
-            size: 24,
-          ),
+          Icon(Icons.chevron_right, color: Colors.grey.shade400, size: 24),
         ],
       ),
     );

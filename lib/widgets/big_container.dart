@@ -127,7 +127,6 @@ class ContainIn extends StatelessWidget {
 
               Expanded(
                 child: SizedBox(
-                  height: 100,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -137,6 +136,8 @@ class ContainIn extends StatelessWidget {
                           fontSize: 17,
                           fontWeight: FontWeight.w600,
                         ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                       ),
 
                       const SizedBox(height: 2),
